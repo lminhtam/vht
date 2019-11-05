@@ -1,0 +1,704 @@
+extends layout
+
+block content
+  // Start Banner Area
+  section.banner-area.organic-breadcrumb
+    .container
+      .breadcrumb-banner.d-flex.flex-wrap.align-items-center.justify-content-end
+        .col-first
+          h1 Trang cửa hàng
+          nav.d-flex.align-items-center
+            a(href='index.html')
+              | Trang chủ
+              span.lnr.lnr-arrow-right
+            a(href='#')
+              | Cửa hàng
+  // End Banner Area
+  .container
+    .row
+      .col-xl-3.col-lg-4.col-md-5
+        .sidebar-categories
+          .head Danh mục
+          ul.main-categories
+            li.main-nav-list
+              a(data-toggle='collapse', href='#fruitsVegetable', aria-expanded='false', aria-controls='fruitsVegetable')
+                span.lnr.lnr-arrow-right
+                | Giày thể thao
+                span.number (53)
+              ul#fruitsVegetable.collapse(data-toggle='collapse', aria-expanded='false', aria-controls='fruitsVegetable')
+                li.main-nav-list.child
+                  a(href='#')
+                    | Nike A540
+                    span.number (13)
+                li.main-nav-list.child
+                  a(href='#')
+                    | Nike A660
+                    span.number (09)
+                li.main-nav-list.child
+                  a(href='#')
+                    | Nike B540
+                    span.number (17)
+                li.main-nav-list.child
+                  a(href='#')
+                    | Nike C540
+                    span.number (01)
+                li.main-nav-list.child
+                  a(href='#')
+                    | Nike D540
+                    span.number (11)
+            li.main-nav-list
+              a(data-toggle='collapse', href='#meatFish', aria-expanded='false', aria-controls='meatFish')
+                span.lnr.lnr-arrow-right
+                | Giày du lịch
+                span.number (53)
+              ul#meatFish.collapse(data-toggle='collapse', aria-expanded='false', aria-controls='meatFish')
+                li.main-nav-list.child
+                  a(href='#')
+                    | Converse A568
+                    span.number (13)
+                li.main-nav-list.child
+                  a(href='#')
+                    | Converse B568
+                    span.number (09)
+                li.main-nav-list.child
+                  a(href='#')
+                    | Converse C568
+                    span.number (17)
+                li.main-nav-list.child
+                  a(href='#')
+                    | Converse D568
+                    span.number (01)
+                li.main-nav-list.child
+                  a(href='#')
+                    | Converse E568
+                    span.number (11)
+            li.main-nav-list
+              a(data-toggle='collapse', href='#cooking', aria-expanded='false', aria-controls='cooking')
+                span.lnr.lnr-arrow-right
+                | Giày đá bóng
+                span.number (53)
+              ul#cooking.collapse(data-toggle='collapse', aria-expanded='false', aria-controls='cooking')
+                li.main-nav-list.child
+                  a(href='#')
+                    | Akka A550
+                    span.number (13)
+                li.main-nav-list.child
+                  a(href='#')
+                    | Akka B550
+                    span.number (09)
+                li.main-nav-list.child
+                  a(href='#')
+                    | Akka C550
+                    span.number (17)
+                li.main-nav-list.child
+                  a(href='#')
+                    | Akka D550
+                    span.number (01)
+                li.main-nav-list.child
+                  a(href='#')
+                    | Akka E550
+                    span.number (11)
+            li.main-nav-list
+              a(data-toggle='collapse', href='#beverages', aria-expanded='false', aria-controls='beverages')
+                span.lnr.lnr-arrow-right
+                | Giày lười
+                span.number (24)
+              ul#beverages.collapse(data-toggle='collapse', aria-expanded='false', aria-controls='beverages')
+                li.main-nav-list.child
+                  a(href='#')
+                    | Bigben A456 
+                    span.number (13)
+                li.main-nav-list.child
+                  a(href='#')
+                    | Bigben B456 
+                    span.number (09)
+                li.main-nav-list.child
+                  a(href='#')
+                    | Bigben C456 
+                    span.number (17)
+                li.main-nav-list.child
+                  a(href='#')
+                    | Bigben D456 
+                    span.number (01)
+                li.main-nav-list.child
+                  a(href='#')
+                    | Bigben E456 
+                    span.number (11)
+            li.main-nav-list
+              a(data-toggle='collapse', href='#homeClean', aria-expanded='false', aria-controls='homeClean')
+                span.lnr.lnr-arrow-right
+                | Giày đi học
+                span.number (53)
+              ul#homeClean.collapse(data-toggle='collapse', aria-expanded='false', aria-controls='homeClean')
+                li.main-nav-list.child
+                  a(href='#')
+                    | Frozen Fish
+                    span.number (13)
+                li.main-nav-list.child
+                  a(href='#')
+                    | Dried Fish
+                    span.number (09)
+                li.main-nav-list.child
+                  a(href='#')
+                    | Fresh Fish
+                    span.number (17)
+                li.main-nav-list.child
+                  a(href='#')
+                    | Meat Alternatives
+                    span.number (01)
+                li.main-nav-list.child
+                  a(href='#')
+                    | Meat
+                    span.number (11)
+            li.main-nav-list
+              a(href='#')
+                | Giày cao gót
+                span.number (24)
+            li.main-nav-list
+              a(data-toggle='collapse', href='#officeProduct', aria-expanded='false', aria-controls='officeProduct')
+                span.lnr.lnr-arrow-right
+                | Giày Sneaker
+                span.number (77)
+              ul#officeProduct.collapse(data-toggle='collapse', aria-expanded='false', aria-controls='officeProduct')
+                li.main-nav-list.child
+                  a(href='#')
+                    | Frozen Fish
+                    span.number (13)
+                li.main-nav-list.child
+                  a(href='#')
+                    | Dried Fish
+                    span.number (09)
+                li.main-nav-list.child
+                  a(href='#')
+                    | Fresh Fish
+                    span.number (17)
+                li.main-nav-list.child
+                  a(href='#')
+                    | Meat Alternatives
+                    span.number (01)
+                li.main-nav-list.child
+                  a(href='#')
+                    | Meat
+                    span.number (11)
+            li.main-nav-list
+              a(data-toggle='collapse', href='#beauttyProduct', aria-expanded='false', aria-controls='beauttyProduct')
+                span.lnr.lnr-arrow-right
+                | Giày cổ cao
+                span.number (65)
+              ul#beauttyProduct.collapse(data-toggle='collapse', aria-expanded='false', aria-controls='beauttyProduct')
+                li.main-nav-list.child
+                  a(href='#')
+                    | Frozen Fish
+                    span.number (13)
+                li.main-nav-list.child
+                  a(href='#')
+                    | Dried Fish
+                    span.number (09)
+                li.main-nav-list.child
+                  a(href='#')
+                    | Fresh Fish
+                    span.number (17)
+                li.main-nav-list.child
+                  a(href='#')
+                    | Meat Alternatives
+                    span.number (01)
+                li.main-nav-list.child
+                  a(href='#')
+                    | Meat
+                    span.number (11)
+            li.main-nav-list
+              a(data-toggle='collapse', href='#healthProduct', aria-expanded='false', aria-controls='healthProduct')
+                span.lnr.lnr-arrow-right
+                | Giày cổ thấp
+                span.number (29)
+              ul#healthProduct.collapse(data-toggle='collapse', aria-expanded='false', aria-controls='healthProduct')
+                li.main-nav-list.child
+                  a(href='#')
+                    | Frozen Fish
+                    span.number (13)
+                li.main-nav-list.child
+                  a(href='#')
+                    | Dried Fish
+                    span.number (09)
+                li.main-nav-list.child
+                  a(href='#')
+                    | Fresh Fish
+                    span.number (17)
+                li.main-nav-list.child
+                  a(href='#')
+                    | Meat Alternatives
+                    span.number (01)
+                li.main-nav-list.child
+                  a(href='#')
+                    | Meat
+                    span.number (11)
+            li.main-nav-list
+              a(href='#')
+                | Giày Jordan
+                span.number (29)
+            li.main-nav-list
+              a(data-toggle='collapse', href='#homeAppliance', aria-expanded='false', aria-controls='homeAppliance')
+                span.lnr.lnr-arrow-right
+                | Giày phong cách
+                span.number (15)
+              ul#homeAppliance.collapse(data-toggle='collapse', aria-expanded='false', aria-controls='homeAppliance')
+                li.main-nav-list.child
+                  a(href='#')
+                    | Frozen Fish
+                    span.number (13)
+                li.main-nav-list.child
+                  a(href='#')
+                    | Dried Fish
+                    span.number (09)
+                li.main-nav-list.child
+                  a(href='#')
+                    | Fresh Fish
+                    span.number (17)
+                li.main-nav-list.child
+                  a(href='#')
+                    | Meat Alternatives
+                    span.number (01)
+                li.main-nav-list.child
+                  a(href='#')
+                    | Meat
+                    span.number (11)
+            li.main-nav-list
+              a.border-bottom-0(data-toggle='collapse', href='#babyCare', aria-expanded='false', aria-controls='babyCare')
+                span.lnr.lnr-arrow-right
+                | Giày cho trẻ em
+                span.number (48)
+              ul#babyCare.collapse(data-toggle='collapse', aria-expanded='false', aria-controls='babyCare')
+                li.main-nav-list.child
+                  a(href='#')
+                    | Frozen Fish
+                    span.number (13)
+                li.main-nav-list.child
+                  a(href='#')
+                    | Dried Fish
+                    span.number (09)
+                li.main-nav-list.child
+                  a(href='#')
+                    | Fresh Fish
+                    span.number (17)
+                li.main-nav-list.child
+                  a(href='#')
+                    | Meat Alternatives
+                    span.number (01)
+                li.main-nav-list.child
+                  a.border-bottom-0(href='#')
+                    | Meat
+                    span.number (11)
+        .sidebar-filter.mt-50
+          .top-filter-head Bộ lọc sản phẩm
+          .common-filter
+            .head Nhãn hiệu
+            form(action='#')
+              ul
+                li.filter-list
+                  input#apple.pixel-radio(type='radio', name='brand')
+                  label(for='apple')
+                    | Converse
+                    span (29)
+                li.filter-list
+                  input#asus.pixel-radio(type='radio', name='brand')
+                  label(for='asus')
+                    | Addidas
+                    span (29)
+                li.filter-list
+                  input#gionee.pixel-radio(type='radio', name='brand')
+                  label(for='gionee')
+                    | New Balance
+                    span (19)
+                li.filter-list
+                  input#micromax.pixel-radio(type='radio', name='brand')
+                  label(for='micromax')
+                    | Nike
+                    span (19)
+                li.filter-list
+                  input#samsung.pixel-radio(type='radio', name='brand')
+                  label(for='samsung')
+                    | Jordan
+                    span (19)
+          .common-filter
+            .head Màu
+            form(action='#')
+              ul
+                li.filter-list
+                  input#black.pixel-radio(type='radio', name='color')
+                  label(for='black')
+                    | Đen
+                    span (29)
+                li.filter-list
+                  input#balckleather.pixel-radio(type='radio', name='color')
+                  label(for='balckleather')
+                    | Đen
+                    | Xám
+                    span (29)
+                li.filter-list
+                  input#blackred.pixel-radio(type='radio', name='color')
+                  label(for='blackred')
+                    | Đen
+                    | Đỏ
+                    span (19)
+                li.filter-list
+                  input#gold.pixel-radio(type='radio', name='color')
+                  label(for='gold')
+                    | Vàng
+                    span (19)
+                li.filter-list
+                  input#spacegrey.pixel-radio(type='radio', name='color')
+                  label(for='spacegrey')
+                    | Xám
+                    span (19)
+          .common-filter
+            .head Giá
+            .price-range-area
+              #price-range
+              .value-wrapper.d-flex
+                .price Giá:
+                span $
+                #lower-value
+                .to đến
+                span $
+                #upper-value
+      .col-xl-9.col-lg-8.col-md-7
+        // Start Filter Bar
+        .filter-bar.d-flex.flex-wrap.align-items-center
+          .sorting
+            select
+              option(value='1') Giá tăng dần
+              option(value='2') Giá giảm dần
+              option(value='3') Phổ biến
+          .sorting.mr-auto
+            select
+              option(value='1') Hiển thị 24
+              option(value='2') Hiển thị 33
+              option(value='3') Hiển thị 11
+          .pagination
+            a.prev-arrow(href='#')
+              i.fa.fa-long-arrow-left(aria-hidden='true')
+            a.active(href='#') 1
+            a(href='#') 2
+            a(href='#') 3
+            a.dot-dot(href='#')
+              i.fa.fa-ellipsis-h(aria-hidden='true')
+            a(href='#') 6
+            a.next-arrow(href='#')
+              i.fa.fa-long-arrow-right(aria-hidden='true')
+        // End Filter Bar
+        // Start Best Seller
+        section.lattest-product-area.pb-40.category-list
+          .row
+            // single product
+            .col-lg-4.col-md-6
+              .single-product
+                img.img-fluid(src='img/product/p3.jpg', alt='')
+                .product-details
+                  h6
+                    | Giày lười
+                  .price
+                    h6 $190.00
+                    h6.l-through $200.00
+                  .prd-bottom
+                    a.social-info(href='')
+                      span.ti-bag
+                      p.hover-text Thêm giỏ
+                    a.social-info(href='')
+                      span.lnr.lnr-heart
+                      p.hover-text Yêu thích
+                    a.social-info(href='')
+                      span.lnr.lnr-sync
+                      p.hover-text So sánh
+                    a.social-info(href='single-product.html')
+                      span.lnr.lnr-move
+                      p.hover-text Xem thêm
+            // single product
+            .col-lg-4.col-md-6
+              .single-product
+                img.img-fluid(src='img/product/p4.jpg', alt='')
+                .product-details
+                  h6
+                    | New Balance
+                  .price
+                    h6 $190.00
+                    h6.l-through $200.00
+                  .prd-bottom
+                    a.social-info(href='')
+                      span.ti-bag
+                      p.hover-text Thêm giỏ
+                    a.social-info(href='')
+                      span.lnr.lnr-heart
+                      p.hover-text Yêu thích
+                    a.social-info(href='')
+                      span.lnr.lnr-sync
+                      p.hover-text So sánh
+                    a.social-info(href='single-product.html')
+                      span.lnr.lnr-move
+                      p.hover-text Xem thêm
+            // single product
+            .col-lg-4.col-md-6
+              .single-product
+                img.img-fluid(src='img/product/p5.jpg', alt='')
+                .product-details
+                  h6
+                    | Converse
+                  .price
+                    h6 $300.00
+                    h6.l-through $450.00
+                  .prd-bottom
+                    a.social-info(href='')
+                      span.ti-bag
+                      p.hover-text Thêm giỏ
+                    a.social-info(href='')
+                      span.lnr.lnr-heart
+                      p.hover-text Yêu thích
+                    a.social-info(href='')
+                      span.lnr.lnr-sync
+                      p.hover-text So sánh
+                    a.social-info(href='single-product.html')
+                      span.lnr.lnr-move
+                      p.hover-text Xem thêm
+            // single product
+            .col-lg-4.col-md-6
+              .single-product
+                img.img-fluid(src='img/product/p6.jpg', alt='')
+                .product-details
+                  h6
+                    | Jordan
+                  .price
+                    h6 $700.00
+                    h6.l-through $800.00
+                  .prd-bottom
+                    a.social-info(href='')
+                      span.ti-bag
+                      p.hover-text Thêm giỏ
+                    a.social-info(href='')
+                      span.lnr.lnr-heart
+                      p.hover-text Yêu thích
+                    a.social-info(href='')
+                      span.lnr.lnr-sync
+                      p.hover-text So sánh
+                    a.social-info(href='single-product.html')
+                      span.lnr.lnr-move
+                      p.hover-text Xem thêm
+            // single product
+            .col-lg-4.col-md-6
+              .single-product
+                img.img-fluid(src='img/product/p7.jpg', alt='')
+                .product-details
+                  h6
+                    | Converse SSA5
+                  .price
+                    h6 $360.00
+                    h6.l-through $380.00
+                  .prd-bottom
+                    a.social-info(href='')
+                      span.ti-bag
+                      p.hover-text Thêm giỏ
+                    a.social-info(href='')
+                      span.lnr.lnr-heart
+                      p.hover-text Yêu thích
+                    a.social-info(href='')
+                      span.lnr.lnr-sync
+                      p.hover-text So sánh
+                    a.social-info(href='single-product.html')
+                      span.lnr.lnr-move
+                      p.hover-text Xem thêm
+            // single product
+            .col-lg-4.col-md-6
+              .single-product
+                img.img-fluid(src='img/product/p8.jpg', alt='')
+                .product-details
+                  h6
+                    | Puma
+                  .price
+                    h6 $1000.00
+                    h6.l-through $1200.00
+                  .prd-bottom
+                    a.social-info(href='')
+                      span.ti-bag
+                      p.hover-text Thêm giỏ
+                    a.social-info(href='')
+                      span.lnr.lnr-heart
+                      p.hover-text Yêu thích
+                    a.social-info(href='')
+                      span.lnr.lnr-sync
+                      p.hover-text So sánh
+                    a.social-info(href='single-product.html')
+                      span.lnr.lnr-move
+                      p.hover-text Xem thêm
+        // End Best Seller
+        // Start Filter Bar
+        .filter-bar.d-flex.flex-wrap.align-items-center
+          .sorting.mr-auto
+            select
+              option(value='1') Hiển thị 24
+              option(value='2') Hiển thị 33
+              option(value='3') Hiển thị 11
+          .pagination
+            a.prev-arrow(href='#')
+              i.fa.fa-long-arrow-left(aria-hidden='true')
+            a.active(href='#') 1
+            a(href='#') 2
+            a(href='#') 3
+            a.dot-dot(href='#')
+              i.fa.fa-ellipsis-h(aria-hidden='true')
+            a(href='#') 6
+            a.next-arrow(href='#')
+              i.fa.fa-long-arrow-right(aria-hidden='true')
+        // End Filter Bar
+  // Start related-product Area
+  section.related-product-area.section_gap_bottom
+    .container
+      .row.justify-content-center
+        .col-lg-6.text-center
+          .section-title
+            h1 Ưu đãi trong tuần
+            p
+              | Tuần mua sắm
+      .row
+        .col-lg-9
+          .row
+            .col-lg-4.col-md-4.col-sm-6.mb-20
+              .single-related-product.d-flex
+                a(href='#')
+                  img(src='img/r1.jpg', alt='')
+                .desc
+                  a.title(href='#') Giày cao gót
+                  .price
+                    h6 $189.00
+                    h6.l-through $210.00
+            .col-lg-4.col-md-4.col-sm-6.mb-20
+              .single-related-product.d-flex
+                a(href='#')
+                  img(src='img/r2.jpg', alt='')
+                .desc
+                  a.title(href='#') Áo thun nam
+                  .price
+                    h6 $100.00
+                    h6.l-through $210.00
+            .col-lg-4.col-md-4.col-sm-6.mb-20
+              .single-related-product.d-flex
+                a(href='#')
+                  img(src='img/r3.jpg', alt='')
+                .desc
+                  a.title(href='#') Đầm đen
+                  .price
+                    h6 $120.00
+                    h6.l-through $150.00
+            .col-lg-4.col-md-4.col-sm-6.mb-20
+              .single-related-product.d-flex
+                a(href='#')
+                  img(src='img/r5.jpg', alt='')
+                .desc
+                  a.title(href='#') Đầm xanh
+                  .price
+                    h6 $150.00
+                    h6.l-through $210.00
+            .col-lg-4.col-md-4.col-sm-6.mb-20
+              .single-related-product.d-flex
+                a(href='#')
+                  img(src='img/r6.jpg', alt='')
+                .desc
+                  a.title(href='#') Giày sandas
+                  .price
+                    h6 $199.00
+                    h6.l-through $210.00
+            .col-lg-4.col-md-4.col-sm-6.mb-20
+              .single-related-product.d-flex
+                a(href='#')
+                  img(src='img/r7.jpg', alt='')
+                .desc
+                  a.title(href='#') Áo sọc
+                  .price
+                    h6 $179.00
+                    h6.l-through $210.00
+            .col-lg-4.col-md-4.col-sm-6
+              .single-related-product.d-flex
+                a(href='#')
+                  img(src='img/r9.jpg', alt='')
+                .desc
+                  a.title(href='#') Áo tay dài
+                  .price
+                    h6 $300.00
+                    h6.l-through $410.00
+            .col-lg-4.col-md-4.col-sm-6
+              .single-related-product.d-flex
+                a(href='#')
+                  img(src='img/r10.jpg', alt='')
+                .desc
+                  a.title(href='#') Áo bó đen
+                  .price
+                    h6 $90.00
+                    h6.l-through $100.00
+            .col-lg-4.col-md-4.col-sm-6
+              .single-related-product.d-flex
+                a(href='#')
+                  img(src='img/r11.jpg', alt='')
+                .desc
+                  a.title(href='#') Giày cao gót vàng
+                  .price
+                    h6 $122.00
+                    h6.l-through $200.00
+        .col-lg-3
+          .ctg-right
+            a(href='#', target='_blank')
+              img.img-fluid.d-block.mx-auto(src='img/category/c5.jpg', alt='')
+  // End related-product Area
+  // Modal Quick Product View
+  #exampleModal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+    .modal-dialog(role='document')
+      .container.relative
+        button.close(type='button', data-dismiss='modal', aria-label='Close')
+          span(aria-hidden='true') &times;
+        .product-quick-view
+          .row.align-items-center
+            .col-lg-6
+              .quick-view-carousel
+                .item(style='background: url(img/organic-food/q1.jpg);')
+                .item(style='background: url(img/organic-food/q1.jpg);')
+                .item(style='background: url(img/organic-food/q1.jpg);')
+            .col-lg-6
+              .quick-view-content
+                .top
+                  h3.head Mill Oil 1000W Heater, White
+                  .price.d-flex.align-items-center
+                    span.lnr.lnr-tag
+                    span.ml-10 $149.99
+                  .category
+                    | Category: 
+                    span Household
+                  .available
+                    | Availibility: 
+                    span In Stock
+                .middle
+                  p.content
+                    | Mill Oil is an innovative oil filled radiator with the most modern technology. If you are
+                    | looking for something that can make your interior look awesome, and at the same time give you the pleasant
+                    | warm feeling during the winter.
+                  a.view-full(href='#')
+                    | View full Details 
+                    span.lnr.lnr-arrow-right
+                .bottom
+                  .color-picker.d-flex.align-items-center
+                    | Color:
+                    span.single-pick
+                    span.single-pick
+                    span.single-pick
+                    span.single-pick
+                    span.single-pick
+                  .quantity-container.d-flex.align-items-center.mt-15
+                    | Quantity:
+                    input.quantity-amount.ml-15(type='text', value='1')
+                    .arrow-btn.d-inline-flex.flex-column
+                      button.increase.arrow(type='button', title='Increase Quantity')
+                        span.lnr.lnr-chevron-up
+                      button.decrease.arrow(type='button', title='Decrease Quantity')
+                        span.lnr.lnr-chevron-down
+                  .d-flex.mt-20
+                    a.view-btn.color-2(href='#')
+                      span Add to Cart
+                    a.like-btn(href='#')
+                      span.lnr.lnr-layers
+                    a.like-btn(href='#')
+                      span.lnr.lnr-heart

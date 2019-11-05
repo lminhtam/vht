@@ -1,0 +1,51 @@
+extends layout
+
+block content
+  // Start Banner Area
+  section.banner-area.organic-breadcrumb
+    .container
+      .breadcrumb-banner.d-flex.flex-wrap.align-items-center.justify-content-end
+        .col-first
+          h1 Trang liên hệ
+          nav.d-flex.align-items-center
+            a(href='index.html')
+              | Trang chủ
+              span.lnr.lnr-arrow-right
+            a(href='#') Liên hệ
+  // End Banner Area
+  // Start Contact Area
+  section.contact_area.section_gap_bottom
+    .container
+      #mapBox.mapBox(data-lat='40.701083', data-lon='-74.1522848', data-zoom='13', data-info='PO Box CT16122 Collins Street West, Victoria 8007, Australia.', data-mlat='40.701083', data-mlon='-74.1522848')
+      .row
+        .col-lg-3
+          .contact_info
+            .info_item
+              i.lnr.lnr-home
+              h6 California, United States
+              p Santa monica bullevard
+            .info_item
+              i.lnr.lnr-phone-handset
+              h6
+                a(href='#') 00 (440) 9865 562
+              p Mon to Fri 9am to 6 pm
+            .info_item
+              i.lnr.lnr-envelope
+              h6
+                a(href='#') support@colorlib.com
+              p Send us your query anytime!
+        .col-lg-9
+          form#contactForm.row.contact_form(action='contact_process.php', method='post', novalidate='novalidate')
+            .col-md-6
+              .form-group
+                input#name.form-control(type='text', name='name', placeholder='Họ tên', onfocus="this.placeholder = ''", onblur="this.placeholder = 'Enter your name'")
+              .form-group
+                input#email.form-control(type='email', name='email', placeholder='Địa chỉ email', onfocus="this.placeholder = ''", onblur="this.placeholder = 'Enter email address'")
+              .form-group
+                input#subject.form-control(type='text', name='subject', placeholder='Tiêu đề', onfocus="this.placeholder = ''", onblur="this.placeholder = 'Enter Subject'")
+            .col-md-6
+              .form-group
+                textarea#message.form-control(name='message', rows='1', placeholder='Nội dung', onfocus="this.placeholder = ''", onblur="this.placeholder = 'Enter Message'")
+            .col-md-12.text-right
+              button.primary-btn(type='submit', value='submit') Gửi phản hồi
+  // End Contact Area

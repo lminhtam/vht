@@ -1,0 +1,43 @@
+extends layout
+
+block content
+  // Start Banner Area
+  section.banner-area.organic-breadcrumb
+    .container
+      .breadcrumb-banner.d-flex.flex-wrap.align-items-center.justify-content-end
+        .col-first
+          h1 Trang đăng nhập/đăng ký
+          nav.d-flex.align-items-center
+            a(href='index.html')
+              | Trang chủ
+              span.lnr.lnr-arrow-right
+            a(href='#') Đăng nhập/Đăng ký
+  // End Banner Area
+  // Start Login Box Area
+  section.login_box_area.section_gap
+    .container
+      .row
+        .col-lg-6
+          .login_box_img
+            img.img-fluid(src='img/login.jpg', alt='')
+            .hover
+              h4 Bạn là thành viên mới của website?
+              p
+                | Hãy đăng ký tài khoản để nhận ưu đãi!
+              a.primary-btn(href='registration.html') Tạo tài khoản
+        .col-lg-6
+          .login_form_inner
+            h3 Đăng nhập
+            form#contactForm.row.login_form(action='contact_process.php', method='post', novalidate='novalidate')
+              .col-md-12.form-group
+                input#name.form-control(type='text', name='name', placeholder='Tên tài khoản', onfocus="this.placeholder = ''", onblur="this.placeholder = 'Username'")
+              .col-md-12.form-group
+                input#name.form-control(type='password', name='name', placeholder='Mật khẩu', onfocus="this.placeholder = ''", onblur="this.placeholder = 'Password'")
+              .col-md-12.form-group
+                .creat_account
+                  input#f-option2(type='checkbox', name='selector')
+                  label(for='f-option2') Luôn đăng nhập
+              .col-md-12.form-group
+                button.primary-btn(type='submit', value='submit') Đăng nhập
+                a(href='forgot-password.html') Quên mật khẩu?
+  // End Login Box Area
