@@ -1,10 +1,9 @@
 var express = require('express');
+var controller = require("../controllers/blog.js");
+
 var router = express.Router();
 
-/* GET users listing. */
-router.get('/', function(req, res, next)
-{
-  res.render('blog');
-});
+/* GET blog page. */
+router.get('/', controller.index);
 
 module.exports = router;

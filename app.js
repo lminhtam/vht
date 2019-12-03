@@ -3,6 +3,9 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var passport = require('passport');
+var flash = require('connect-flash');
+var session = require('express-session');
 
 var indexRouter = require('./routes/index');
 var categoryRouter = require('./routes/category')
@@ -18,8 +21,13 @@ var registrationRouter = require('./routes/registration');
 var trackingRouter = require('./routes/tracking');
 var elementsRouter = require('./routes/elements');
 var contactRouter = require('./routes/contact');
+var dashboardRouter = require('./routes/dashboard');
+var logoutRouter = require('./routes/logout');
 
 var app = express();
+
+// passport config
+require('./config/passport')(passport);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -31,6 +39,31 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// express session
+app.use(session(
+{
+	secret: 'secret',
+	resave: true,
+	saveUninitialized: true
+}));
+
+// passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+// connect flash
+app.use(flash());
+
+// global variables
+app.use(function(req, res, next) 
+{
+	res.locals.success_msg = req.flash('success_msg');
+	res.locals.error_msg = req.flash('error_msg');
+	res.locals.error = req.flash('error');
+	next();
+});
+
+// routers
 app.use('/', indexRouter);
 app.use('/index.html', indexRouter);
 app.use('/category.html', categoryRouter);
@@ -46,6 +79,8 @@ app.use('/registration.html', registrationRouter);
 app.use('/tracking.html', trackingRouter);
 app.use('/elements.html', elementsRouter);
 app.use('/contact.html', contactRouter);
+app.use('/dashboard.html', dashboardRouter);
+app.use('/logout.html', logoutRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) 

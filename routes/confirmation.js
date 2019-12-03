@@ -1,10 +1,9 @@
 var express = require('express');
+var controller = require("../controllers/confirmation.js");
+
 var router = express.Router();
 
-/* GET users listing. */
-router.get('/', function(req, res, next)
-{
-  res.render('confirmation');
-});
+/* GET confirmation page. */
+router.get('/', controller.index);
 
 module.exports = router;

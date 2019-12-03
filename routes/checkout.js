@@ -1,10 +1,9 @@
 var express = require('express');
+var controller = require("../controllers/checkout.js");
+
 var router = express.Router();
 
-/* GET users listing. */
-router.get('/', function(req, res, next) 
-{
-  res.render('checkout');
-});
+/* GET checkout page. */
+router.get('/', controller.index);
 
 module.exports = router;

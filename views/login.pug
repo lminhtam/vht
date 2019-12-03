@@ -28,11 +28,21 @@ block content
         .col-lg-6
           .login_form_inner
             h3 Đăng nhập
-            form#contactForm.row.login_form(action='contact_process.php', method='post', novalidate='novalidate')
+            form#contactForm.row.login_form(action='login.html', method='POST')
               .col-md-12.form-group
-                input#name.form-control(type='text', name='name', placeholder='Tên tài khoản', onfocus="this.placeholder = ''", onblur="this.placeholder = 'Username'")
+                if success_msg!=''
+                  .alert.alert-success
+                    | #{success_msg}
+                if error_msg!=''
+                  .alert.alert-danger
+                    | #{error_msg}
+                if error!=''
+                  .alert.alert-danger
+                    | #{error}
               .col-md-12.form-group
-                input#name.form-control(type='password', name='name', placeholder='Mật khẩu', onfocus="this.placeholder = ''", onblur="this.placeholder = 'Password'")
+                input#name.form-control(type='email', name='email', placeholder='Email', onfocus="this.placeholder = ''", onblur="this.placeholder = 'Email'")
+              .col-md-12.form-group
+                input#name.form-control(type='password', name='password', placeholder='Mật khẩu', onfocus="this.placeholder = ''", onblur="this.placeholder = 'Mật khẩu'")
               .col-md-12.form-group
                 .creat_account
                   input#f-option2(type='checkbox', name='selector')
