@@ -6,7 +6,7 @@ block content
     .container
       .breadcrumb-banner.d-flex.flex-wrap.align-items-center.justify-content-end
         .col-first
-          h1 Trang liên hệ
+          h1 Liên hệ
           nav.d-flex.align-items-center
             a(href='index.html')
               | Trang chủ
@@ -22,30 +22,30 @@ block content
           .contact_info
             .info_item
               i.lnr.lnr-home
-              h6 California, United States
-              p Santa monica bullevard
+              h6 HCM, Việt Nam
+              p VHT Shop
             .info_item
               i.lnr.lnr-phone-handset
               h6
-                a(href='#') 00 (440) 9865 562
-              p Mon to Fri 9am to 6 pm
+                a(href='#') 0333386574
+              p 8AM - 5PM, Thứ 2 - Thứ 6
             .info_item
               i.lnr.lnr-envelope
               h6
                 a(href='#') support@colorlib.com
-              p Send us your query anytime!
+              p Gửi phản hồi cho chúng tôi bất cứ lúc nào bạn cần!
         .col-lg-9
-          form#contactForm.row.contact_form(action='contact_process.php', method='post', novalidate='novalidate')
+          form#contactForm.row.contact_form(action='#', method='POST')
             .col-md-6
               .form-group
-                input#name.form-control(type='text', name='name', placeholder='Họ tên', onfocus="this.placeholder = ''", onblur="this.placeholder = 'Enter your name'")
+                input#name.form-control(type='text', name='name', placeholder='Họ tên', onfocus="this.placeholder = ''", onblur="this.placeholder = 'Họ tên'")
               .form-group
-                input#email.form-control(type='email', name='email', placeholder='Địa chỉ email', onfocus="this.placeholder = ''", onblur="this.placeholder = 'Enter email address'")
+                input#email.form-control(type='email', name='email', placeholder='Email', onfocus="this.placeholder = ''", onblur="this.placeholder = 'Email'")
               .form-group
-                input#subject.form-control(type='text', name='subject', placeholder='Tiêu đề', onfocus="this.placeholder = ''", onblur="this.placeholder = 'Enter Subject'")
+                input#subject.form-control(type='text', name='subject', placeholder='Tiêu đề', onfocus="this.placeholder = ''", onblur="this.placeholder = 'Tiêu đề'")
             .col-md-6
               .form-group
-                textarea#message.form-control(name='message', rows='1', placeholder='Nội dung', onfocus="this.placeholder = ''", onblur="this.placeholder = 'Enter Message'")
+                textarea#message.form-control(name='message', rows='5', placeholder='Nội dung', onfocus="this.placeholder = ''", onblur="this.placeholder = 'Nội dung'")
             .col-md-12.text-right
               button.primary-btn(type='submit', value='submit') Gửi phản hồi
   // End Contact Area

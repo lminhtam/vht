@@ -1,10 +1,5 @@
-
-var mongodb = require("mongodb");
-const bcrypt = require('bcryptjs');
-
-var mongoClient = mongodb.MongoClient;
-
-var url = "mongodb+srv://toanhuuvuong:toanhuuvuong123456@toandb-lttzl.azure.mongodb.net/test?retryWrites=true&w=majority/";
+var userQueries = require('../models/user-queries');
+var bcrypt = require('bcryptjs');
 
 module.exports.index = function(req, res, next)
 {
@@ -13,8 +8,6 @@ module.exports.index = function(req, res, next)
 
 module.exports.indexPost = function(req, res, next) 
 {
-	console.log(req.body);
-
 	var { name, email, password1, password2 } = req.body;
 
 	var errors = [];
@@ -27,9 +20,9 @@ module.exports.indexPost = function(req, res, next)
 	{
 		errors.push('Your password do not match :(');
 	}
-	if(password1.length < 6)
+	if(password1.length <= 6)
 	{
-		errors.push('Your password must be at least 6 characters :(');
+		errors.push('Your password must be at least 7 characters :(');
 	}
 
 	if(errors.length > 0)
@@ -42,68 +35,44 @@ module.exports.indexPost = function(req, res, next)
 	}
 	else
 	{
-		mongoClient.connect(url, function(err, db)
+		userQueries.getListUserByQuery({ email: email }, function(users)
 		{
-			if(err) throw err;
-
-			var dbo = db.db("ToanDB");
-
-			var query = 
+			var user = users[0];
+			if(user)
 			{
-				email: email
+				errors.push('Email already exists :(');
+		        res.render('registration', 
+				{
+					errors: errors,
+					values: req.body
+				});
 			}
-			dbo.collection("User").findOne(query, function(err, result)
+			else
 			{
-				if(err) throw err;
-
-				console.log('SELECT * FROM User AS U');
-
-				console.log(result);
-
-				if(result)
+				var newUser = 
 				{
-					errors.push('Email already exists :(');
-			        res.render('registration', 
-					{
-						errors: errors,
-						values: req.body
-					});
+					name: name,
+					email: email,
+					password: password1
 				}
-				else
+
+				bcrypt.genSalt(10, function(err, salt)
 				{
-					var newUser = 
-					{
-						name: name,
-						email: email,
-						password: password1
-					}
+			        bcrypt.hash(newUser.password, salt, function(err, hash)
+			        {
+			            if (err) throw err;
 
-					bcrypt.genSalt(10, function(err, salt)
-					{
-				        bcrypt.hash(newUser.password, salt, function(err, hash)
-				        {
-				            if (err) throw err;
+			            newUser.password = hash;
 
-				            newUser.password = hash;
+			            userQueries.insertUser(newUser, function(result)
+			            {
+			            	req.flash('success_msg', 'You are now registered and can log in :)');
 
-				            dbo.collection("User").insertOne(newUser, function(err, result)
-							{
-								if(err) throw err;
-
-								console.log("" + result.insertedCount + ' documents inserted in collection "User" of database "ToanDB"!');
-
-								console.log(result);
-
-								db.close();
-
-								req.flash('success_msg', 'You are now registered and can log in :)');
-
-				                res.redirect('login');
-							});
-				        });
-				    });
-				}
-			});
+			                res.redirect('login.html');
+			            });
+			        });
+			    });
+			}
 		});
 	}
 }

@@ -16,7 +16,7 @@ block content
                   p
                     | Phong cách mạnh mẽ, cá tính
                   .add-bag.d-flex.align-items-center
-                    a.add-btn(href='#') 
+                    a.add-btn(href='cart.html') 
                       span.lnr.lnr-cross
                     span.add-text.text-uppercase Thêm vào giỏ hàng
               .col-lg-7
@@ -31,7 +31,7 @@ block content
                   p
                     | Sang trọng
                   .add-bag.d-flex.align-items-center
-                    a.add-btn(href='#')
+                    a.add-btn(href='cart.html')
                       span.lnr.lnr-cross
                     span.add-text.text-uppercase Thêm vào giỏ hàng
               .col-lg-7
@@ -125,8 +125,7 @@ block content
               p
                 | Săn ngay!
         .row
-          each product in products
-            // single product
+          each product in top10LastestProduct
             .col-lg-3.col-md-6
               .single-product
                 img.img-fluid(src=product.image, alt='')
@@ -149,12 +148,11 @@ block content
         .row.justify-content-center
           .col-lg-6.text-center
             .section-title
-              h1 Sản phẩm sắp ra mắt
+              h1 Sản phẩm phổ biến
               p
-                | Hãy đón chờ!
+                | Săn ngay!
         .row
-          each product in products
-            // single product
+          each product in top10MostPopularProduct
             .col-lg-3.col-md-6
               .single-product
                 img.img-fluid(src=product.image, alt='')
@@ -195,7 +193,7 @@ block content
                 .col.clockinner.clockinner1
                   h1.seconds 59
                   span.smalltext Giây
-          a.primary-btn(href='') Đến của hàng ngay
+          a.primary-btn(href='category.html') Đến của hàng ngay
         .col-lg-6.no-padding.exclusive-right
           .active-exclusive-product-slider
             // single exclusive carousel
@@ -203,12 +201,12 @@ block content
               img.img-fluid(src='img/product/e-p1.png', alt='')
               .product-details
                 .price
-                  h6 $1500.00
-                  h6.l-through $2000.00
+                  h6 $1500
+                  h6.l-through $2000
                 h4
-                  | Converse ABCD
+                  | Converse Full Color
                 .add-bag.d-flex.align-items-center.justify-content-center
-                  a.add-btn(href='')
+                  a.add-btn(href='cart.html')
                     span.ti-bag
                   span.add-text.text-uppercase Thêm vào giỏ hàng
             // single exclusive carousel
@@ -216,12 +214,12 @@ block content
               img.img-fluid(src='img/product/e-p1.png', alt='')
               .product-details
                 .price
-                  h6 $900.00
-                  h6.l-through $1100.00
+                  h6 $900
+                  h6.l-through $1100
                 h4
-                  | Converse 9999
+                  | Converse Classic For Bboy
                 .add-bag.d-flex.align-items-center.justify-content-center
-                  a.add-btn(href='')
+                  a.add-btn(href='cart.html')
                     span.ti-bag
                   span.add-text.text-uppercase Thêm vào giỏ hàng
   // End Exclusive Deal Area
@@ -259,8 +257,8 @@ block content
                 .desc
                   a.title(href='#') Giày cao gót
                   .price
-                    h6 $189.00
-                    h6.l-through $210.00
+                    h6 $189
+                    h6.l-through $210
             .col-lg-4.col-md-4.col-sm-6.mb-20
               .single-related-product.d-flex
                 a(href='#')
@@ -268,8 +266,8 @@ block content
                 .desc
                   a.title(href='#') Áo thun nam
                   .price
-                    h6 $100.00
-                    h6.l-through $210.00
+                    h6 $100
+                    h6.l-through $210
             .col-lg-4.col-md-4.col-sm-6.mb-20
               .single-related-product.d-flex
                 a(href='#')
@@ -277,8 +275,8 @@ block content
                 .desc
                   a.title(href='#') Đầm đen
                   .price
-                    h6 $120.00
-                    h6.l-through $150.00
+                    h6 $120
+                    h6.l-through $150
             .col-lg-4.col-md-4.col-sm-6.mb-20
               .single-related-product.d-flex
                 a(href='#')
@@ -286,8 +284,8 @@ block content
                 .desc
                   a.title(href='#') Đầm xanh
                   .price
-                    h6 $150.00
-                    h6.l-through $210.00
+                    h6 $150
+                    h6.l-through $210
             .col-lg-4.col-md-4.col-sm-6.mb-20
               .single-related-product.d-flex
                 a(href='#')
@@ -295,8 +293,8 @@ block content
                 .desc
                   a.title(href='#') Giày sandas
                   .price
-                    h6 $199.00
-                    h6.l-through $210.00
+                    h6 $199
+                    h6.l-through $210
             .col-lg-4.col-md-4.col-sm-6.mb-20
               .single-related-product.d-flex
                 a(href='#')
@@ -304,8 +302,8 @@ block content
                 .desc
                   a.title(href='#') Áo sọc
                   .price
-                    h6 $179.00
-                    h6.l-through $210.00
+                    h6 $179
+                    h6.l-through $210
             .col-lg-4.col-md-4.col-sm-6
               .single-related-product.d-flex
                 a(href='#')
@@ -313,8 +311,8 @@ block content
                 .desc
                   a.title(href='#') Áo tay dài
                   .price
-                    h6 $300.00
-                    h6.l-through $410.00
+                    h6 $300
+                    h6.l-through $410
             .col-lg-4.col-md-4.col-sm-6
               .single-related-product.d-flex
                 a(href='#')
@@ -322,8 +320,8 @@ block content
                 .desc
                   a.title(href='#') Áo bó đen
                   .price
-                    h6 $90.00
-                    h6.l-through $100.00
+                    h6 $90
+                    h6.l-through $100
             .col-lg-4.col-md-4.col-sm-6
               .single-related-product.d-flex
                 a(href='#')
@@ -331,8 +329,8 @@ block content
                 .desc
                   a.title(href='#') Giày cao gót vàng
                   .price
-                    h6 $122.00
-                    h6.l-through $200.00
+                    h6 $122
+                    h6.l-through $200
         .col-lg-3
           .ctg-right
             a(href='#', target='_blank')

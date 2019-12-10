@@ -6,15 +6,15 @@ block content
     .container
       .breadcrumb-banner.d-flex.flex-wrap.align-items-center.justify-content-end
         .col-first
-          h1 Trang chi tiết sản phẩm
+          h1 Chi tiết sản phẩm
           nav.d-flex.align-items-center
             a(href='index.html')
               | Trang chủ
               span.lnr.lnr-arrow-right
-            a(href='#')
-              | Cửa hàng
+            a(href='category.html')
+              | Danh mục
               span.lnr.lnr-arrow-right
-            a(href='single-product.html') Chi tiết sản phẩm
+            a(href='#') Chi tiết sản phẩm
   // End Banner Area
   // Start Single Product Area
   .product_image_area
@@ -23,24 +23,31 @@ block content
         .col-lg-6
           .s_Product_carousel
             .single-prd-item
-              img.img-fluid(src=products[0].image, alt='')
+              img.img-fluid(src=product.image, alt='')
             .single-prd-item
-              img.img-fluid(src=products[0].image, alt='')
+              img.img-fluid(src=product.image, alt='')
         .col-lg-5.offset-lg-1
           .s_product_text
-            h3 #{products[0].name}
-            h2 $#{products[0].price}
+            h3 #{product.name}
+            h2 $#{product.price}
             ul.list
               li
                 a.active(href='#')
                   span Nhãn hiệu
-                  |  : #{products[0].stall}
+                  |  : #{product.stall}
               li
                 a(href='#')
-                  span Tình trạng
-                  |  : #{products[0].status}
+                  if product.qty <= 0
+                    span Tình trạng
+                    |  : Hết hàng
+                  else if product.qty <= 500
+                    span Tình trạng
+                    |  : Còn ít hàng
+                  else
+                    span Tình trạng
+                    |  : Còn hàng
             p
-              | #{products[0].description}
+              | #{product.description}
             .product_count
               label(for='qty') Số lượng:
               input#sst.input-text.qty(type='text', name='qty', maxlength='12', value='1', title='Quantity:')
@@ -49,11 +56,7 @@ block content
               button.reduced.items-count(onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) && sst > 0 ) result.value--;return false;", type='button')
                 i.lnr.lnr-chevron-down
             .card_area.d-flex.align-items-center
-              a.primary-btn(href='#') Thêm vào giỏ
-              a.icon_btn(href='#')
-                i.lnr.lnr.lnr-diamond
-              a.icon_btn(href='#')
-                i.lnr.lnr.lnr-heart
+              a.primary-btn(href='cart.html') Thêm vào giỏ
   // End Single Product Area
   // Start Product Description Area 
   section.product_description_area
@@ -69,52 +72,31 @@ block content
           a#review-tab.nav-link.active(data-toggle='tab', href='#review', role='tab', aria-controls='review', aria-selected='false') Đánh giá
       #myTabContent.tab-content
         #home.tab-pane.fade(role='tabpanel', aria-labelledby='home-tab')
-          p
-            | Beryl Cook is one of Britain&rsquo;s most talented and amusing artists .Beryl&rsquo;s pictures feature women of all shapes
-            | and sizes enjoying themselves .Born between the two world wars, Beryl Cook eventually left Kendrick School in
-            | Reading at the age of 15, where she went to secretarial school and then into an insurance office. After moving to
-            | London and then Hampton, she eventually married her next door neighbour from Reading, John Cook. He was an
-            | officer in the Merchant Navy and after he left the sea in 1956, they bought a pub for a year before John took a
-            | job in Southern Rhodesia with a motor company. Beryl bought their young son a box of watercolours, and when
-            | showing him how to use it, she decided that she herself quite enjoyed painting. John subsequently bought her a
-            | child&rsquo;s painting set for her birthday and it was with this that she produced her first significant work, a
-            | half-length portrait of a dark-skinned lady with a vacant expression and large drooping breasts. It was aptly
-            | named &lsquo;Hangover&rsquo; by Beryl&rsquo;s husband and
-          p
-            | It is often frustrating to attempt to plan meals that are designed for one. Despite this fact, we are seeing
-            | more and more recipe books and Internet websites that are dedicated to the act of cooking for one. Divorce and
-            | the death of spouses or grown children leaving for college are all reasons that someone accustomed to cooking for
-            | more than one would suddenly need to learn how to adjust all the cooking practices utilized before into a
-            | streamlined plan of cooking that is more efficient for one person creating less
+          p #{product.description}
         #profile.tab-pane.fade(role='tabpanel', aria-labelledby='profile-tab')
           .table-responsive
             table.table
               tbody
                 tr
                   td
-                    h5 Chiều rộng
+                    h5 Ngày ra mắt
                   td
-                    h5 128mm
+                    h5 #{product.date}
                 tr
                   td
-                    h5 Chiều cao
+                    h5 Số lượng trong kho
                   td
-                    h5 508mm
+                    h5 #{product.qty}
                 tr
                   td
-                    h5 Chiều sâu
+                    h5 Tình trạng
                   td
-                    h5 85mm
-                tr
-                  td
-                    h5 Trọng lượng
-                  td
-                    h5 52gm
-                tr
-                  td
-                    h5 Tình trạng số lượng
-                  td
-                    h5 Còn hàng
+                    if product.qty <= 0
+                      h5 Hết hàng
+                    else if product.qty <= 500
+                      h5 Còn ít hàng
+                    else
+                      h5 Còn hàng                 
         #contact.tab-pane.fade(role='tabpanel', aria-labelledby='contact-tab')
           .row
             .col-lg-6
@@ -152,7 +134,7 @@ block content
             .col-lg-6
               .review_box
                 h4 Viết bình luận
-                form#contactForm.row.contact_form(action='contact_process.php', method='post', novalidate='novalidate')
+                form#contactForm.row.contact_form(action='#', method='POST')
                   .col-md-12
                     .form-group
                       input#name.form-control(type='text', name='name', placeholder='Họ tên')
@@ -174,57 +156,17 @@ block content
                 .col-6
                   .box_total
                     h5 Tổng thể
-                    h4 4.0
-                    h6 (03 Đánh giá)
+                    h4 #{product.ratingStar}
+                    h6 (#{product.numRate} Đánh giá)
                 .col-6
                   .rating_list
-                    h3 Dựa trên 3 đánh giá
+                    h3 Dựa trên #{product.numRate} đánh giá
                     ul.list
                       li
                         a(href='#')
-                          | 5 Sao 
-                          i.fa.fa-star
-                          i.fa.fa-star
-                          i.fa.fa-star
-                          i.fa.fa-star
-                          i.fa.fa-star
-                          |  01
-                      li
-                        a(href='#')
-                          | 4 Sao 
-                          i.fa.fa-star
-                          i.fa.fa-star
-                          i.fa.fa-star
-                          i.fa.fa-star
-                          i.fa.fa-star
-                          |  01
-                      li
-                        a(href='#')
-                          | 3 Sao 
-                          i.fa.fa-star
-                          i.fa.fa-star
-                          i.fa.fa-star
-                          i.fa.fa-star
-                          i.fa.fa-star
-                          |  01
-                      li
-                        a(href='#')
-                          | 2 Sao 
-                          i.fa.fa-star
-                          i.fa.fa-star
-                          i.fa.fa-star
-                          i.fa.fa-star
-                          i.fa.fa-star
-                          |  01
-                      li
-                        a(href='#')
-                          | 1 Sao 
-                          i.fa.fa-star
-                          i.fa.fa-star
-                          i.fa.fa-star
-                          i.fa.fa-star
-                          i.fa.fa-star
-                          |  01
+                          | #{parseInt(product.ratingStar)} Sao 
+                          - for(var j = 1; j <= parseInt(product.ratingStar); j++)
+                            i.fa.fa-star
               .review_list
                 .review_item
                   .media
@@ -268,37 +210,24 @@ block content
             .col-lg-6
               .review_box
                 h4 Thêm đánh giá
-                p Đánh giá của bạn:
-                ul.list
-                  li
-                    a(href='#')
-                      i.fa.fa-star
-                  li
-                    a(href='#')
-                      i.fa.fa-star
-                  li
-                    a(href='#')
-                      i.fa.fa-star
-                  li
-                    a(href='#')
-                      i.fa.fa-star
-                  li
-                    a(href='#')
-                      i.fa.fa-star
-                p độ nổi bật
-                form#contactForm.row.contact_form(action='contact_process.php', method='post', novalidate='novalidate')
+                p Đánh giá của bạn về độ nổi bật
+                form#contactForm.row.contact_form(action='#', method='POST')
                   .col-md-12
                     .form-group
-                      input#name.form-control(type='text', name='name', placeholder='Họ tên', onfocus="this.placeholder = ''", onblur="this.placeholder = 'Your Full name'")
+                      input#name.form-control(type='text', name='name', placeholder='Họ tên', onfocus="this.placeholder = ''", onblur="this.placeholder = 'Họ tên'")
                   .col-md-12
                     .form-group
-                      input#email.form-control(type='email', name='email', placeholder='Địa chỉ email', onfocus="this.placeholder = ''", onblur="this.placeholder = 'Email Address'")
+                      input#email.form-control(type='email', name='email', placeholder='Email', onfocus="this.placeholder = ''", onblur="this.placeholder = 'Email'")
                   .col-md-12
                     .form-group
-                      input#number.form-control(type='text', name='number', placeholder='Số điện thoại', onfocus="this.placeholder = ''", onblur="this.placeholder = 'Phone Number'")
+                      textarea#message.form-control(name='message', rows='1', placeholder='Nội dung', onfocus="this.placeholder = ''", onblur="this.placeholder = 'Nội dung'")
                   .col-md-12
-                    .form-group
-                      textarea#message.form-control(name='message', rows='1', placeholder='Nội dung', onfocus="this.placeholder = ''", onblur="this.placeholder = 'Review'")
+                    select
+                      option(value=5) 5 Sao
+                      option(value=4) 4 Sao
+                      option(value=3) 3 Sao
+                      option(value=2) 2 Sao
+                      option(value=1) 1 Sao
                   .col-md-12.text-right
                     button.primary-btn(type='submit', value='submit') Gửi
   // End Product Description Area
@@ -321,8 +250,8 @@ block content
                 .desc
                   a.title(href='#') Giày cao gót
                   .price
-                    h6 $189.00
-                    h6.l-through $210.00
+                    h6 $189
+                    h6.l-through $210
             .col-lg-4.col-md-4.col-sm-6.mb-20
               .single-related-product.d-flex
                 a(href='#')
@@ -330,8 +259,8 @@ block content
                 .desc
                   a.title(href='#') Áo thun nam
                   .price
-                    h6 $100.00
-                    h6.l-through $210.00
+                    h6 $100
+                    h6.l-through $210
             .col-lg-4.col-md-4.col-sm-6.mb-20
               .single-related-product.d-flex
                 a(href='#')
@@ -339,8 +268,8 @@ block content
                 .desc
                   a.title(href='#') Đầm đen
                   .price
-                    h6 $120.00
-                    h6.l-through $150.00
+                    h6 $120
+                    h6.l-through $150
             .col-lg-4.col-md-4.col-sm-6.mb-20
               .single-related-product.d-flex
                 a(href='#')
@@ -348,8 +277,8 @@ block content
                 .desc
                   a.title(href='#') Đầm xanh
                   .price
-                    h6 $150.00
-                    h6.l-through $210.00
+                    h6 $150
+                    h6.l-through $210
             .col-lg-4.col-md-4.col-sm-6.mb-20
               .single-related-product.d-flex
                 a(href='#')
@@ -357,8 +286,8 @@ block content
                 .desc
                   a.title(href='#') Giày sandas
                   .price
-                    h6 $199.00
-                    h6.l-through $210.00
+                    h6 $199
+                    h6.l-through $210
             .col-lg-4.col-md-4.col-sm-6.mb-20
               .single-related-product.d-flex
                 a(href='#')
@@ -366,8 +295,8 @@ block content
                 .desc
                   a.title(href='#') Áo sọc
                   .price
-                    h6 $179.00
-                    h6.l-through $210.00
+                    h6 $179
+                    h6.l-through $210
             .col-lg-4.col-md-4.col-sm-6
               .single-related-product.d-flex
                 a(href='#')
@@ -375,8 +304,8 @@ block content
                 .desc
                   a.title(href='#') Áo tay dài
                   .price
-                    h6 $300.00
-                    h6.l-through $410.00
+                    h6 $300
+                    h6.l-through $410
             .col-lg-4.col-md-4.col-sm-6
               .single-related-product.d-flex
                 a(href='#')
@@ -384,8 +313,8 @@ block content
                 .desc
                   a.title(href='#') Áo bó đen
                   .price
-                    h6 $90.00
-                    h6.l-through $100.00
+                    h6 $90
+                    h6.l-through $100
             .col-lg-4.col-md-4.col-sm-6
               .single-related-product.d-flex
                 a(href='#')
@@ -393,8 +322,8 @@ block content
                 .desc
                   a.title(href='#') Giày cao gót vàng
                   .price
-                    h6 $122.00
-                    h6.l-through $200.00
+                    h6 $122
+                    h6.l-through $200
         .col-lg-3
           .ctg-right
             a(href='#', target='_blank')

@@ -7,10 +7,9 @@ module.exports.index = function(req, res, next)
 
 module.exports.indexPost = function(req, res, next)
 {
-	console.log(req.body);
 	passport.authenticate('local', 
 	{
-	    successRedirect: 'dashboard.html',
+	    successRedirect: 'index.html',
 	    failureRedirect: 'login.html',
 	    failureFlash: true
   	})(req, res, next);

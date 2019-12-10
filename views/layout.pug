@@ -2,8 +2,7 @@ doctype html
 head
   // Mobile Specific Meta
   meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
-  // Favicon
-  link(rel='shortcut icon', href='img/fav.png')
+  // FaviTRUE  link(rel='shortcut icon', href='img/fav.png')
   // Author Meta
   meta(name='author', content='CodePixar')
   // Meta Description
@@ -46,35 +45,46 @@ header.header_area.sticky-header
             li.nav-item.active
               a.nav-link(href='index.html') Trang chủ
             li.nav-item.submenu.dropdown
-              a.nav-link.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false') Cửa hàng
+              a.nav-link.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false') Danh mục sản phẩm
               ul.dropdown-menu
                 li.nav-item
-                  a.nav-link(href='category.html') Danh mục
+                  a.nav-link(href='category.html') Tất cả
                 li.nav-item
-                  a.nav-link(href='single-product.html') Chi tiết sản phẩm
+                  a.nav-link(href='category.html?stall=Nike') Giày Nike
                 li.nav-item
-                  a.nav-link(href='checkout.html') Thanh toán
+                  a.nav-link(href='category.html?stall=Adidas') Giày Adidas   
                 li.nav-item
-                  a.nav-link(href='cart.html') Giỏ hàng
+                  a.nav-link(href='category.html?stall=New+Balance') Giày New Balance
                 li.nav-item
-                  a.nav-link(href='confirmation.html') Xác nhận
-            li.nav-item.submenu.dropdown
-              a.nav-link.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false') Blog
-              ul.dropdown-menu
+                  a.nav-link(href='category.html?stall=Vans') Giày Vans     
                 li.nav-item
-                  a.nav-link(href='blog.html') Blog
+                  a.nav-link(href='category.html?stall=Puma') Giày Puma      
                 li.nav-item
-                  a.nav-link(href='single-blog.html') Chi tiết blog
+                  a.nav-link(href='category.html?stall=Converse') Giày Converse
+                li.nav-item
+                  a.nav-link(href='category.html?stall=Balenciaga') Giày Balenciaga
+            li.nav-item
+              a.nav-link(href='login.html') Đăng nhập/đăng ký
             li.nav-item
               a.nav-link(href='contact.html') Liên hệ
             li.nav-item.submenu.dropdown
               a.nav-link.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false') Trang khác
               ul.dropdown-menu
                 li.nav-item
-                  a.nav-link(href='login.html') Đăng nhập/Đăng ký
+                  a.nav-link(href='checkout.html') Thanh toán
                 li.nav-item
-                  a.nav-link(href='tracking.html') Theo dõi đơn hàng
+                  a.nav-link(href='confirmation.html') Xác nhận
+                li.nav-item
+                  a.nav-link(href='blog.html') Blog
+                li.nav-item
+                  a.nav-link(href='single-blog.html') Chi tiết blog
+                li.nav-item
+                  a.nav-link(href='tracking.html') Theo dõi đơn hàng 
           ul.nav.navbar-nav.navbar-right
+            if process.env.DID_LOGIN == 'TRUE'
+              li.nav-item
+                a.logout(href='logout.html')
+                  span.ti-user
             li.nav-item
               a.cart(href='cart.html')
                 span.ti-bag

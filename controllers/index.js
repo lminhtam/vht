@@ -1,32 +1,21 @@
-
-var mongodb = require("mongodb");
-
-var mongoClient = mongodb.MongoClient;
-
-var url = "mongodb+srv://toanhuuvuong:toanhuuvuong123456@toandb-lttzl.azure.mongodb.net/test?retryWrites=true&w=majority/";
+var productQueries = require('../models/product-queries');
 
 module.exports.index = function(req, res, next) 
 {
-	mongoClient.connect(url, function(err, db)
+	productQueries.getListProductByQuery({}, function(products)
 	{
-		if(err) throw err;
+		var top10LastestProduct = products.slice(0, 10);
 
-		var dbo = db.db("ToanDB");
-
-		dbo.collection("products").find({}).toArray(function(err, result)
+		productQueries.getListProductByQuery({}, function(products)
 		{
-			if(err) throw err;
-
-			console.log('SELECT * FROM products AS P');
-
-			console.log(result);
-
-			db.close();
+			var top10MostPopularProduct = products.slice(0, 10);
 
 			res.render('index', 
 			{
-				products: result
+				top10LastestProduct: top10LastestProduct,
+				top10MostPopularProduct: top10MostPopularProduct
 			});
-		});
-	});
+		}, { numRate: -1 });
+
+	}, { date: -1 });
 }

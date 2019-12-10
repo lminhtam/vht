@@ -1,14 +1,14 @@
-
 module.exports = 
 {
   ensureAuthenticated: function(req, res, next) 
   {
     if (req.isAuthenticated()) 
     {
+      process.env.DID_LOGIN = 'TRUE';
       return next();
     }
     
-    req.flash('error_msg', 'Please log in to view that resource');
+    req.flash('error_msg', 'Please log in to view that resource :(');
     res.redirect('login.html');
   },
 
@@ -18,7 +18,7 @@ module.exports =
     {
       return next();
     }
-
+    process.env.DID_LOGIN = 'TRUE';
     res.redirect('index.html');      
   }
 };

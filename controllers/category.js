@@ -1,57 +1,88 @@
-
-var mongodb = require("mongodb");
-
-var mongoClient = mongodb.MongoClient;
-
-var url = "mongodb+srv://toanhuuvuong:toanhuuvuong123456@toandb-lttzl.azure.mongodb.net/test?retryWrites=true&w=majority/"
+var productQueries = require('../models/product-queries');
 
 module.exports.index = function(req, res, next) 
 {
-	console.log(req.query);
+	var { stall, gte, lte, sort, startPage, page, perPage } = req.query;
 
-	mongoClient.connect(url, function(err, db)
+	startPage = (startPage == undefined) ? 1 : parseInt(startPage);
+	page = (page == undefined) ? 1 : parseInt(page);
+	perPage = (perPage == undefined) ? 8 : parseInt(perPage);
+
+	var start = (page - 1) * perPage;
+	var end = page * perPage;
+
+
+	var query, options;
+	if(stall == undefined)
 	{
-		if(err) throw err;
-
-		var dbo = db.db("ToanDB");
-
-		var query
-
-		if (req.query.stall == undefined)
+		if(gte == undefined)
 		{
-			query = req.query
-		}
-		else if (req.query.stall != "null")
-		{
-			query = 
+			if(sort == undefined)
 			{
-				stall: req.query.stall
+				query = {};
+				options = {};
+			}
+			else
+			{
+				query = {};
+				options = { 'price': parseInt(sort) };
 			}
 		}
 		else
 		{
-			query = 
+			if(sort == undefined)
 			{
-				price: { $gte: parseInt(req.query.gte), $lte: parseInt(req.query.lte) }
+				query = { price: { $gte: parseInt(gte), $lte: parseInt(lte) } };
+				options = {};
+			}
+			else
+			{
+				query = { price: { $gte: parseInt(gte), $lte: parseInt(lte) } };
+				options = { 'price': parseInt(sort) };
 			}
 		}
-
-		dbo.collection("products").find(query).toArray(function(err, result)
+	}
+	else
+	{
+		if(gte == undefined)
 		{
-			if(err) throw err;
-
-			console.log('SELECT * FROM products AS P WHERE ');
-			
-			console.log(query);
-
-			console.log(result);
-
-			db.close();
-
-			res.render('category', 
+			if(sort == undefined)
 			{
-				products: result
-			});
+				query = { stall: stall };
+				options = {};
+			}
+			else
+			{
+				query = { stall: stall };
+				options = { 'price': parseInt(sort) };
+			}
+		}
+		else
+		{
+			if(sort == undefined)
+			{
+				query = { stall: stall, price: { $gte: parseInt(gte), $lte: parseInt(lte) } };
+				options = {};
+			}
+			else
+			{
+				query = { stall: stall, price: { $gte: parseInt(gte), $lte: parseInt(lte) } };
+				options = { 'price': parseInt(sort) };
+			}
+		}
+	}
+	productQueries.getListProductByQuery(query, function(products)
+	{
+		res.render('category', 
+		{
+			products: products.slice(start, end),
+			stall: stall,
+			gte: gte,
+			lte: lte,
+			sort: sort,
+			startPage: startPage,
+			page: page,
+			perPage: perPage
 		});
-	});	
+	}, options);
 }

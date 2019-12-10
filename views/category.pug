@@ -6,13 +6,13 @@ block content
     .container
       .breadcrumb-banner.d-flex.flex-wrap.align-items-center.justify-content-end
         .col-first
-          h1 Trang cửa hàng
+          h1 Danh mục
           nav.d-flex.align-items-center
             a(href='index.html')
               | Trang chủ
               span.lnr.lnr-arrow-right
             a(href='#')
-              | Cửa hàng
+              | Danh mục
   // End Banner Area
   .container
     .row
@@ -24,75 +24,76 @@ block content
             form(action='#')
               ul
                 li.filter-list
-                  a(href='category.html?stall=Converse&gte=null&lte=null')
-                    label(for='apple')
-                      | Converse
+                  a(href='category.html')
+                    label(for='All')
+                      | Tất cả
                 li.filter-list
-                  a(href='category.html?stall=Nike&gte=null&lte=null')
-                    label(for='micromax')
-                      | Nike
+                  a(href='category.html?stall=Nike')
+                    label(for='Nike')
+                      | Giày Nike
                 li.filter-list
-                  a(href='category.html?stall=Adidas&gte=null&lte=null')
-                    label(for='asus')
-                      | Adidas
+                  a(href='category.html?stall=Adidas')
+                    label(for='Adidas')
+                      | Giày Adidas
                 li.filter-list
-                  a(href='category.html?stall=New+Balance&gte=null&lte=null')
-                    label(for='gionee')
-                      | New Balance
+                  a(href='category.html?stall=New+Balance')
+                    label(for='New Balance')
+                      | Giày New Balance
                 li.filter-list
-                  a(href='category.html?stall=ASICS&gte=null&lte=null')
-                    label(for='samsung')
-                      | ASICS
+                  a(href='category.html?stall=Vans')
+                    label(for='Vans')
+                      | Giày Vans
+                li.filter-list
+                  a(href='category.html?stall=Puma')
+                    label(for='Puma')
+                      | Giày Puma
+                li.filter-list
+                  a(href='category.html?stall=Converse')
+                    label(for='Converse')
+                      | Giày Converse
+                li.filter-list
+                  a(href='category.html?stall=Balenciaga')
+                    label(for='Balenciaga')
+                      | Giày Balenciaga
           .common-filter
             .head Giá
             form(action='#')
               ul
                 li.filter-list
-                  a(href='category.html?stall=null&gte=0&lte=50')
-                    label(for='apple')
+                  a(href='category.html?'+((stall==undefined)?'':'stall='+stall+'&')+'gte=0&lte=50'+((sort==undefined)?'':'&sort='+sort))
+                    label(for='$50 trở xuống')
                       | $50 trở xuống
                 li.filter-list
-                  a(href='category.html?stall=null&gte=50&lte=100')
-                    label(for='asus')
+                  a(href='category.html?'+((stall==undefined)?'':'stall='+stall+'&')+'gte=50&lte=100'+((sort==undefined)?'':'&sort='+sort))
+                    label(for='$50 - $100')
                       | $50 - $100
                 li.filter-list
-                  a(href='category.html?stall=null&gte=100&lte=200')
-                    label(for='gionee')
+                  a(href='category.html?'+((stall==undefined)?'':'stall='+stall+'&')+'gte=100&lte=200'+((sort==undefined)?'':'&sort='+sort))
+                    label(for='$100 - $200')
                       | $100 - $200
                 li.filter-list
-                  a(href='category.html?stall=null&gte=200&lte=500')
-                    label(for='micromax')
+                  a(href='category.html?'+((stall==undefined)?'':'stall='+stall+'&')+'gte=200&lte=500'+((sort==undefined)?'':'&sort='+sort))
+                    label(for='$200 - $500')
                       | $200 - $500
                 li.filter-list
-                  a(href='category.html?stall=null&gte=500&lte=1000000')
-                    label(for='samsung')
+                  a(href='category.html?'+((stall==undefined)?'':'stall='+stall+'&')+'gte=500&lte=1000000'+((sort==undefined)?'':'&sort='+sort))
+                    label(for='$500 trở lên')
                       | $500 trở lên
       .col-xl-9.col-lg-8.col-md-7
         // Start Filter Bar
         .filter-bar.d-flex.flex-wrap.align-items-center
           .sorting
-            select
-              option(value='1') Giá tăng dần
-              option(value='2') Giá giảm dần
-              option(value='3') Phổ biến
-          .sorting.mr-auto
-          .pagination
-            a.prev-arrow(href='#')
-              i.fa.fa-long-arrow-left(aria-hidden='true')
-            a.active(href='#') 1
-            a(href='#') 2
-            a(href='#') 3
-            a.dot-dot(href='#')
-              i.fa.fa-ellipsis-h(aria-hidden='true')
-            a(href='#') 6
-            a.next-arrow(href='#')
-              i.fa.fa-long-arrow-right(aria-hidden='true')
+            .dropdown.show
+              a#dropdownMenuLink.btn.rounded-0.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false', style='background-color:white;')
+                | Sắp xếp
+              .dropdown-menu(aria-labelledby='dropdownMenuLink')
+                a.dropdown-item(href='category.html?'+((stall==undefined)?'':'stall='+stall+'&')+((gte==undefined)?'':'gte='+gte+'&lte='+lte+'&')+'sort=1') Giá tăng dần
+                a.dropdown-item(href='category.html?'+((stall==undefined)?'':'stall='+stall+'&')+((gte==undefined)?'':'gte='+gte+'&lte='+lte+'&')+'sort=-1') Giá giảm dần
         // End Filter Bar
         // Start Best Seller
         section.lattest-product-area.pb-40.category-list
           .row
             each product in products
-              // single product
               .col-lg-3.col-md-6
                 .single-product
                   img.img-fluid(src=product.image, alt='')
@@ -113,10 +114,36 @@ block content
         // Start Filter Bar
         .filter-bar.d-flex.flex-wrap.align-items-center
           .sorting.mr-auto
-            select
-              option(value='1') Hiển thị 24
-              option(value='2') Hiển thị 33
-              option(value='3') Hiển thị 11
+          .pagination
+            a.prev-arrow(href='category.html?'+((stall==undefined)?'':'stall='+stall+'&')+((gte==undefined)?'':'gte='+gte+'&lte='+lte+'&')+((sort==undefined)?'':'sort='+sort+'&')+'startPage='+((startPage==1)?1:startPage-1)+'&page='+((page==1)?1:page-1))
+              i.fa.fa-long-arrow-left(aria-hidden='true')
+            
+            if page==startPage
+
+              a.active(href='category.html?'+((stall==undefined)?'':'stall='+stall+'&')+((gte==undefined)?'':'gte='+gte+'&lte='+lte+'&')+((sort==undefined)?'':'sort='+sort+'&')+'startPage='+startPage+'&page='+startPage) #{startPage}
+              
+              a(href='category.html?'+((stall==undefined)?'':'stall='+stall+'&')+((gte==undefined)?'':'gte='+gte+'&lte='+lte+'&')+((sort==undefined)?'':'sort='+sort+'&')+'startPage='+startPage+'&page='+(startPage+1)) #{startPage+1}
+              
+              a(href='category.html?'+((stall==undefined)?'':'stall='+stall+'&')+((gte==undefined)?'':'gte='+gte+'&lte='+lte+'&')+((sort==undefined)?'':'sort='+sort+'&')+'startPage='+startPage+'&page='+(startPage+2)) #{startPage+2}
+            
+            else if page==startPage+1
+              
+              a(href='category.html?'+((stall==undefined)?'':'stall='+stall+'&')+((gte==undefined)?'':'gte='+gte+'&lte='+lte+'&')+((sort==undefined)?'':'sort='+sort+'&')+'startPage='+startPage+'&page='+startPage) #{startPage}
+              
+              a.active(href='category.html?'+((stall==undefined)?'':'stall='+stall+'&')+((gte==undefined)?'':'gte='+gte+'&lte='+lte+'&')+((sort==undefined)?'':'sort='+sort+'&')+'startPage='+startPage+'&page='+(startPage+1)) #{startPage+1}
+              
+              a(href='category.html?'+((stall==undefined)?'':'stall='+stall+'&')+((gte==undefined)?'':'gte='+gte+'&lte='+lte+'&')+((sort==undefined)?'':'sort='+sort+'&')+'startPage='+startPage+'&page='+(startPage+2)) #{startPage+2}
+            
+            else
+              
+              a(href='category.html?'+((stall==undefined)?'':'stall='+stall+'&')+((gte==undefined)?'':'gte='+gte+'&lte='+lte+'&')+((sort==undefined)?'':'sort='+sort+'&')+'startPage='+startPage+'&page='+startPage) #{startPage}
+              
+              a(href='category.html?'+((stall==undefined)?'':'stall='+stall+'&')+((gte==undefined)?'':'gte='+gte+'&lte='+lte+'&')+((sort==undefined)?'':'sort='+sort+'&')+'startPage='+startPage+'&page='+(startPage+1)) #{startPage+1}
+              
+              a.active(href='category.html?'+((stall==undefined)?'':'stall='+stall+'&')+((gte==undefined)?'':'gte='+gte+'&lte='+lte+'&')+((sort==undefined)?'':'sort='+sort+'&')+'startPage='+startPage+'&page='+(startPage+2)) #{startPage+2}
+            
+            a.next-arrow(href='category.html?'+((stall==undefined)?'':'stall='+stall+'&')+((gte==undefined)?'':'gte='+gte+'&lte='+lte+'&')+((sort==undefined)?'':'sort='+sort+'&')+'startPage='+(startPage+1)+'&page='+(page+1))
+              i.fa.fa-long-arrow-right(aria-hidden='true')
         // End Filter Bar
   // Start related-product Area
   section.related-product-area.section_gap_bottom
@@ -137,8 +164,8 @@ block content
                 .desc
                   a.title(href='#') Giày cao gót
                   .price
-                    h6 $189.00
-                    h6.l-through $210.00
+                    h6 $189
+                    h6.l-through $210
             .col-lg-4.col-md-4.col-sm-6.mb-20
               .single-related-product.d-flex
                 a(href='#')
@@ -146,8 +173,8 @@ block content
                 .desc
                   a.title(href='#') Áo thun nam
                   .price
-                    h6 $100.00
-                    h6.l-through $210.00
+                    h6 $100
+                    h6.l-through $210
             .col-lg-4.col-md-4.col-sm-6.mb-20
               .single-related-product.d-flex
                 a(href='#')
@@ -155,8 +182,8 @@ block content
                 .desc
                   a.title(href='#') Đầm đen
                   .price
-                    h6 $120.00
-                    h6.l-through $150.00
+                    h6 $120
+                    h6.l-through $150
             .col-lg-4.col-md-4.col-sm-6.mb-20
               .single-related-product.d-flex
                 a(href='#')
@@ -164,8 +191,8 @@ block content
                 .desc
                   a.title(href='#') Đầm xanh
                   .price
-                    h6 $150.00
-                    h6.l-through $210.00
+                    h6 $150
+                    h6.l-through $210
             .col-lg-4.col-md-4.col-sm-6.mb-20
               .single-related-product.d-flex
                 a(href='#')
@@ -173,8 +200,8 @@ block content
                 .desc
                   a.title(href='#') Giày sandas
                   .price
-                    h6 $199.00
-                    h6.l-through $210.00
+                    h6 $199
+                    h6.l-through $210
             .col-lg-4.col-md-4.col-sm-6.mb-20
               .single-related-product.d-flex
                 a(href='#')
@@ -182,8 +209,8 @@ block content
                 .desc
                   a.title(href='#') Áo sọc
                   .price
-                    h6 $179.00
-                    h6.l-through $210.00
+                    h6 $179
+                    h6.l-through $210
             .col-lg-4.col-md-4.col-sm-6
               .single-related-product.d-flex
                 a(href='#')
@@ -191,8 +218,8 @@ block content
                 .desc
                   a.title(href='#') Áo tay dài
                   .price
-                    h6 $300.00
-                    h6.l-through $410.00
+                    h6 $300
+                    h6.l-through $410
             .col-lg-4.col-md-4.col-sm-6
               .single-related-product.d-flex
                 a(href='#')
@@ -200,8 +227,8 @@ block content
                 .desc
                   a.title(href='#') Áo bó đen
                   .price
-                    h6 $90.00
-                    h6.l-through $100.00
+                    h6 $90
+                    h6.l-through $100
             .col-lg-4.col-md-4.col-sm-6
               .single-related-product.d-flex
                 a(href='#')
@@ -209,8 +236,8 @@ block content
                 .desc
                   a.title(href='#') Giày cao gót vàng
                   .price
-                    h6 $122.00
-                    h6.l-through $200.00
+                    h6 $122
+                    h6.l-through $200
         .col-lg-3
           .ctg-right
             a(href='#', target='_blank')

@@ -1,91 +1,44 @@
+var userQueries = require('../models/user-queries');
 var LocalStrategy = require('passport-local').Strategy;
 var bcrypt = require('bcryptjs');
-var mongodb = require("mongodb");
-
-var mongoClient = mongodb.MongoClient;
-
-var ObjectId = mongodb.ObjectId
-
-var url = "mongodb+srv://toanhuuvuong:toanhuuvuong123456@toandb-lttzl.azure.mongodb.net/test?retryWrites=true&w=majority/";
+var ObjectId = require("mongodb").ObjectId;
 
 module.exports = function(passport)
 {
   passport.use(new LocalStrategy({ usernameField: 'email' }, function(email, password, done)
   {
-    mongoClient.connect(url, function(err, db)
+    userQueries.getListUserByQuery({ email: email }, function(users)
     {
-      if(err) throw err;
-
-      var dbo = db.db("ToanDB");
-
-      var query = 
+      var user = users[0];
+      if(!user) 
       {
-        email: email
+        return done(null, false, { message: 'That email is not registered :(' });
       }
-      dbo.collection("User").findOne(query, function(err, result)
+
+      bcrypt.compare(password, user.password, function(err, isMatch)
       {
-        if(err) throw err;
+        if (err) throw err;
 
-        console.log('SELECT * FROM User AS U');
-
-        console.log(result);
-
-        db.close();
-
-        if(!result) 
+        if (isMatch) 
         {
-          console.log('That email is not registered :(');
-          return done(null, false, { message: 'That email is not registered :(' });
-        }
+          return done(null, user);
+        } 
 
-        bcrypt.compare(password, result.password, function(err, isMatch)
-        {
-          if (err) throw err;
-
-          if (isMatch) 
-          {
-            console.log('Login :)');
-            return done(null, result);
-          } 
-          console.log('Password incorrect :(');
-          return done(null, false, { message: 'Password incorrect :(' });
-        });
+        return done(null, false, { message: 'Password incorrect :(' });
       });
     });
   }));
 
   passport.serializeUser(function(user, done) 
   {
-    console.log(user);
     done(null, user._id);
   });
 
   passport.deserializeUser(function(id, done)
   {
-    mongoClient.connect(url, function(err, db)
+    userQueries.getListUserByQuery({ _id: ObjectId(id) }, function(users)
     {
-      if(err) throw err;
-
-      var dbo = db.db("ToanDB");
-
-      console.log(id);
-
-      var query = 
-      {
-        _id: ObjectId(id)
-      }
-      dbo.collection("User").findOne(query, function(err, result)
-      {
-        if(err) throw err;
-
-        console.log('SELECT * FROM User AS U');
-
-        console.log(result);
-
-        db.close();
-
-        done(err, result);
-      });
+      done(null, users[0]);
     });
   });
-};
+}
