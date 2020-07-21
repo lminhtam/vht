@@ -1,18 +1,25 @@
-var userQueries = require('../models/user-queries');
-var LocalStrategy = require('passport-local').Strategy;
+var userDAO = require('../dao/user');
 var bcrypt = require('bcryptjs');
+
+var LocalStrategy = require('passport-local').Strategy;
 var ObjectId = require("mongodb").ObjectId;
 
 module.exports = function(passport)
 {
   passport.use(new LocalStrategy({ usernameField: 'email' }, function(email, password, done)
   {
-    userQueries.getListUserByQuery({ email: email }, function(users)
+    userDAO.find({ email: email }, function(users)
     {
       var user = users[0];
+      
       if(!user) 
       {
         return done(null, false, { message: 'That email is not registered :(' });
+      }
+
+      if(user.didDelete) 
+      {
+        return done(null, false, { message: 'Your account is locked :(' });
       }
 
       bcrypt.compare(password, user.password, function(err, isMatch)
@@ -21,6 +28,13 @@ module.exports = function(passport)
 
         if (isMatch) 
         {
+          if(process.env.LOGIN_TYPE == 'admin' && user.type== 'customer') 
+          {
+            return done(null, false, { message: 'Your account is not allowed for this login :(' });
+          }
+
+          process.env.ADMIN_NAME = user.name;
+          
           return done(null, user);
         } 
 
@@ -36,7 +50,7 @@ module.exports = function(passport)
 
   passport.deserializeUser(function(id, done)
   {
-    userQueries.getListUserByQuery({ _id: ObjectId(id) }, function(users)
+    userDAO.find({ _id: ObjectId(id) }, function(users)
     {
       done(null, users[0]);
     });

@@ -4,10 +4,20 @@ var router = express.Router();
 
 router.get('/', function(req, res) 
 {
-	process.env.DID_LOGIN = 'FALSE';
 	req.logout();
+
 	req.flash('success_msg', 'You are logged out :)');
-	res.redirect('login.html');
+
+	if(process.env.LOGIN_TYPE != 'admin')
+	{
+		process.env.DID_LOGIN = 'FALSE';
+		res.redirect('login.html');
+    }
+	else
+	{
+		process.env.DID_LOGIN_ADMIN = 'FALSE';
+		res.redirect('admin-login.html');
+	}
 });
 
 module.exports = router;
